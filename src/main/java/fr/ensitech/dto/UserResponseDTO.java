@@ -21,7 +21,7 @@ public class UserResponseDTO {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private boolean isActive;
+    private boolean active;
     
     // Optionnel : rôles (uniquement pour l'utilisateur lui-même ou admin)
     private Set<String> roles;
@@ -39,7 +39,7 @@ public class UserResponseDTO {
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setPhoneNumber(user.getPhoneNumber());
-        dto.setIsActive(user.isActive());
+        dto.setActive(user.isActive());
         return dto;
     }
     

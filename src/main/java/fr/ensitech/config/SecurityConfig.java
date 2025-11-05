@@ -30,33 +30,25 @@ public class SecurityConfig {
         http
             // Désactiver CSRF pour API REST
             .csrf(csrf -> csrf.disable())
-            
             // Configuration des autorisations par endpoints
             .authorizeHttpRequests(auth -> auth
                 // Console H2 (développement uniquement)
                 .requestMatchers("/h2-console/**").permitAll()
-                
                 // Endpoints de test et documentation
                 .requestMatchers("/", "/test/**", "/api-docs/**").permitAll()
-                
                 // ⚠️ Endpoints VULNÉRABLES : accessibles sans auth (pour démonstration)
                 .requestMatchers("/vulnerable/**").permitAll()
-                
                 // ✅ Endpoints SÉCURISÉS : authentification requise
                 .requestMatchers("/secure/**").authenticated()
-                
                 // Toutes les autres routes nécessitent une authentification
                 .anyRequest().authenticated()
             )
-            
             // Configuration HTTP Basic Auth (simplifié pour démo)
             .httpBasic(basic -> {})
-            
             // Session stateless (préparé pour JWT)
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
-            
             // Permettre les frames (pour console H2)
             .headers(headers -> headers
                 .frameOptions(frame -> frame.sameOrigin())
