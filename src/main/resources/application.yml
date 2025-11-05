@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: broken-access-control-demo
+  
+  # Configuration H2 Database
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  # Console H2
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # JPA / Hibernate
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  
+  # Security
+  security:
+    user:
+      name: user
+      password: password
+
+# Configuration serveur
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# Logging
+logging:
+  level:
+    root: INFO
+    fr.ensitech: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
